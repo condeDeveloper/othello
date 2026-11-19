@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <RootNamespace>Conde.Othello</RootNamespace>
+    <AssemblyName>Conde.Othello</AssemblyName>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <InvariantGlobalization>true</InvariantGlobalization>
+    <Description>Othello resolvido em tabuleiros pequenos, em F#: placar exato com poda alfa-beta, a grade ingenua como juiz e o tabuleiro transposto</Description>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Nucleo.fs" />
+    <Compile Include="Juiz.fs" />
+    <Compile Include="Medidas.fs" />
+  </ItemGroup>
+</Project>
