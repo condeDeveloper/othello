@@ -1,0 +1,30 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  testes:
+    name: testes (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+      - name: o nucleo, o juiz e os numeros do README
+        shell: bash
+        run: dotnet test testes/Othello.Testes/Othello.Testes.fsproj -c Release --nologo -v q --filter "FullyQualifiedName!~Pesados"
+      - name: as varreduras caras
+        shell: bash
+        run: dotnet test testes/Othello.Testes/Othello.Testes.fsproj -c Release --nologo -v q --filter "FullyQualifiedName~Pesados"
+      - name: as tabelas do README, recalculadas
+        shell: bash
+        run: dotnet run --project ferramentas/Medidor/Medidor.fsproj -c Release
